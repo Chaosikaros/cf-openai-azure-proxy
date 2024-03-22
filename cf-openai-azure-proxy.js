@@ -12,6 +12,7 @@ const mapper = {
     'gpt-4-1106-preview': DEPLOY_NAME_GPT4,
     'gpt-4-32k': DEPLOY_NAME_GPT4,
     'dall-e-3': typeof DEPLOY_NAME_DALLE3 !== 'undefined' ? DEPLOY_NAME_DALLE3 : "dalle3",
+    'dall-e-2': typeof DEPLOY_NAME_DALLE2 !== 'undefined' ? DEPLOY_NAME_DALLE3 : "dalle2"
 };
 
 const apiVersion="2023-12-01-preview"
@@ -50,7 +51,7 @@ async function handleRequest(request) {
   const deployName = mapper[modelName] || '' 
 
   if (deployName === '') {
-    return new Response('Missing model mapper', {
+    return new Response(`Missing model mapper: ${modelName}`, {
         status: 403
     });
   }
